@@ -29,23 +29,18 @@ function processYear(){
         for (let index = 1; index <=7; index++) {
             let count = elementsInDay[index];
             let container = document.getElementById(index);
-            let height = (100/count).toString();
-            let width = (100/count).toString();
+            let widthN =Math.pow(Math.ceil(Math.sqrt(count)), 2);
+            let width = (138/(Math.sqrt(widthN))).toString();
             dataToAdd[index].forEach(element => {
                 const card = document.createElement('div');
                 card.contentEditable =  true;
                 card.classList = 'card-entry';
-                card.style.width = width+"%";
-                card.style.height = height+"%";
-                // Construct card content
-                const content = `
-                        <div class="column-entry">
-                            <div class="card-entry">${element}
-                            </div>
-                        </div>`;
-                container.innerHTML += content;
+                card.style.height = width+"px";
+                card.style.width = width+"px";
+                card.innerHTML = element;
+                card.style.backgroundColor = getRandomColor();
+                container.appendChild(card);
             });
-
         }
     }
     else{
@@ -57,22 +52,27 @@ document.addEventListener("DOMContentLoaded", function(){
 const container = document.getElementById('row');
 let days = ["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"]
 for (let index = 1; index <= 7; index++)  {
-  // Create card element
+  const column = document.createElement('div');
+  column.classList = 'column';
+  container.appendChild(column);
+
+  const header = document.createElement('div');
+  header.classList = 'header';
+  header.innerHTML= days[index-1];
+  column.appendChild(header);
+
   const card = document.createElement('div');
-  card.className = 'column';
-  card.classList = 'column';
-  let heading = days[index-1];
-  // Construct card content
-  const content = `
-    <div class="column">
-      <div class="header">
-        <p>${heading}</p>
-      </div>
-      <div id=${index} class="card">
-        <div id=${index} class="row-entry">
-        </div>
-      </div>
-    </div>`;
-  container.innerHTML += content;
+  card.classList = 'card';
+  card.id=index;
+  column.appendChild(card);
 }
 });
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }

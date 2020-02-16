@@ -27,8 +27,8 @@ body {
   padding: 3px;
   text-align: right;
   background-color: aquamarine;
-  height: 50px;
-  width: 100%;
+  height: 35px;
+  width: 150px;
 }
 
 .card {
@@ -37,28 +37,17 @@ body {
   text-align: center;
   background-color: #f1f1f1;
   height: 150px;
-  width: 100%;
+  width: 150px;
 }
 
 .card-entry {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
-  padding: 1px;
-  text-align: center;
-  background-color:rgb(32, 165, 218);
-}
-.column-entry {
+  display: flex;
   float: left;
-
-  padding: 0 1px;
- 
+  text-align: center;
+  
 }
-.row-entry {margin: 0 -5px;}
 
-.row-entry:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;
